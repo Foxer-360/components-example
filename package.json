@@ -10,12 +10,13 @@
   "private": true,
   "scripts": {
     "build": "yarn compile && yarn babel && yarn resolveDefs",
-    "rebuild": "yarn clean && yarn build",
+    "rebuild": "yarn clean && yarn install --check-files && yarn build && yarn removeTypes",
     "compile": "tsc --build tsconfig.build.json",
     "babel": "babel lib --out-dir lib",
     "resolveDefs": "node scripts/resolveDefinitions.js",
     "test": "jest",
-    "clean": "rm -rf ./lib"
+    "clean": "rm -rf ./lib",
+    "removeTypes": "rm -rf ./node_modules/@types"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -35,6 +36,10 @@
     "tslint-config-prettier": "^1.15.0",
     "tslint-react": "^3.6.0",
     "typescript": "^3.0.3"
+  },
+  "peerDependencies": {
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
   },
   "dependencies": {},
   "jest": {
@@ -58,9 +63,5 @@
     "moduleNameMapper": {
       "@source/(.*)": "<rootDir>/src/$1"
     }
-  },
-  "peerDependencies": {
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2"
   }
 }

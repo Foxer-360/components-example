@@ -1,28 +1,38 @@
-import * as React from 'react';
 import AlertNotFound from '@source/components/AlertNotFound';
+import Dummy from '@source/components/Dummy';
+import * as React from 'react';
 
-interface LooseObject {
+interface ILooseObject {
   [key: string]: any;
 }
 
 class ComponentsService {
 
   public getAllowedTypes(): string[] {
-    return ['Base'];
+    return ['Base', 'Dummy'];
   }
 
   public getComponent(type: string): typeof React.Component {
-    switch (name) {
+    switch (type) {
+      case 'Dummy':
+        return Dummy;
       default:
         return AlertNotFound;
     }
   }
 
-  public getComponentResource(type: string): LooseObject {
+  public getComponentResource(type: string): ILooseObject {
     const res = {
-      name: 'Base',
       data: {},
+      name: 'Base',
     };
+
+    if (type === 'Dummy') {
+      return {
+        data: {},
+        name: 'Dummy',
+      }
+    }
 
     return res;
   }

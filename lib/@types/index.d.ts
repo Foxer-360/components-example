@@ -1,11 +1,11 @@
 import * as React from 'react';
-interface LooseObject {
+interface ILooseObject {
     [key: string]: any;
 }
 declare class ComponentsService {
     getAllowedTypes(): string[];
     getComponent(type: string): typeof React.Component;
-    getComponentResource(type: string): LooseObject;
+    getComponentResource(type: string): ILooseObject;
     getForm(type: string): typeof React.Component;
 }
 export { ComponentsService, };
