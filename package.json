@@ -9,14 +9,17 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "build": "yarn compile && yarn babel && yarn resolveDefs",
-    "rebuild": "yarn clean && yarn install --check-files && yarn build && yarn removeTypes",
+    "babel": "babel build --out-dir lib",
+    "build": "yarn compile && yarn babel && yarn resolveDefs && yarn buildCss",
+    "buildCss": "node scripts/buildCss.js",
+    "clean": "rm -rf ./lib",
+    "cleanOnlyTypes": "rm -rf ./lib/@types",
     "compile": "tsc --build tsconfig.build.json",
-    "babel": "babel lib --out-dir lib",
+    "rebuild": "yarn cleanOnlyTypes && yarn build",
     "resolveDefs": "node scripts/resolveDefinitions.js",
     "test": "jest",
-    "clean": "rm -rf ./lib",
-    "removeTypes": "rm -rf ./node_modules/@types"
+    "up": "yarn install --check-files",
+    "hot": "yarn up && node scripts/hotReload.js"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
@@ -30,7 +33,9 @@
     "@types/react": "*",
     "@types/react-dom": "*",
     "babel-plugin-module-resolver": "^3.1.1",
+    "eslint": "^5.6.1",
     "jest": "^23.5.0",
+    "node-sass": "^4.9.3",
     "ts-jest": "^23.1.4",
     "tslint": "^5.11.0",
     "tslint-config-prettier": "^1.15.0",

@@ -1,13 +1,13 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "outDir": "lib",
+    "outDir": "build",
     "module": "esnext",
     "target": "es5",
     "lib": [
+      "dom",
       "es6",
-      "esnext",
-      "dom"
+      "esnext"
     ],
     "jsx": "react",
     "sourceMap": true,
@@ -25,16 +25,19 @@
     "noUnusedLocals": true,
     "strict": true,
     "paths": {
-      "@source/*": ["./src/*"],
+      "@source/*": ["./src/*"]
     },
     "typeRoots": [
       "./node_modules/@types",
-      "./src/@types"
+      "./src/types"
     ]
   },
   "exclude": [
+    "build",
     "lib",
     "node_module",
-    "config"
+    "config",
+    "scripts",
+    "styles"
   ]
 }
